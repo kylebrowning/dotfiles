@@ -101,5 +101,12 @@ brew install vbindiff
 brew install webkit2png
 brew install zopfli
 
+
+# development
+brew cask install virtualbox
+brew cask install vagrant
+brew cask install vagrant-manager
+brew install ansible
+
 # Remove outdated versions from the cellar.
 brew cleanup
