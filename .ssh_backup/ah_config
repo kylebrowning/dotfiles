@@ -1,0 +1,156 @@
+#########################################################
+#
+# Using this file:
+#
+# Edit kylebrowning and replace with your bastion user name
+# Edit ~/.ssh/id_rsa and replace with the name of your key file (verify that the path is correct)
+# Edit bastion-21 and replace with your bastion server name (e.g. bastion)
+# Place this file in ~/.ssh/ah_config
+#
+#########################################################
+
+Host bastion
+  HostName bastion-21.network.hosting.acquia.com
+  User kylebrowning
+  Port 40506
+  ServerAliveInterval 60
+  ControlMaster auto
+  ControlPath /tmp/ssh_mux_%h_%p_%r
+  ForwardAgent yes
+  StrictHostKeyChecking no
+  IdentityFile ~/.ssh/id_rsa
+  ProxyCommand none
+
+Host bastion-21 bastion-22 bastion-133
+  HostName %h.network.hosting.acquia.com
+  User kylebrowning
+  Port 40506
+  ServerAliveInterval 60
+  ControlMaster auto
+  ControlPath /tmp/ssh_mux_%h_%p_%r
+  ForwardAgent yes
+  StrictHostKeyChecking no
+  IdentityFile ~/.ssh/id_rsa
+  ProxyCommand none
+
+Host bastion-3
+  HostName %h.castle.hosting.acquia.com
+  User kylebrowning
+  Port 40506
+  ServerAliveInterval 60
+  ControlMaster auto
+  ControlPath /tmp/ssh_mux_%h_%p_%r
+  ForwardAgent yes
+  StrictHostKeyChecking no
+  IdentityFile ~/.ssh/id_rsa
+  ProxyCommand none
+
+Host bastion-21.network.hosting.acquia.com bastion-22.network.hosting.acquia.com bastion-3.castle.hosting.acquia.com
+  HostName %h
+  User kylebrowning
+  Port 40506
+  ServerAliveInterval 60
+  ControlMaster auto
+  ControlPath /tmp/ssh_mux_%h_%p_%r
+  ForwardAgent yes
+  StrictHostKeyChecking no
+  IdentityFile ~/.ssh/id_rsa
+  ProxyCommand none
+
+Host svn-*.hosting.acquia.com
+  HostName %h
+  User kylebrowning
+  Port 22
+  ServerAliveInterval 60
+  StrictHostKeyChecking no
+  IdentityFile ~/.ssh/id_rsa
+
+Host *.castle
+  ProxyCommand ssh -F ~/.ssh/ah_config bastion-3 nc %h %p
+  HostName %h.hosting.acquia.com
+  User kylebrowning
+  Port 40506
+  ServerAliveInterval 60
+  ForwardAgent yes
+  StrictHostKeyChecking no
+  IdentityFile ~/.ssh/id_rsa
+
+Host *.castle.hosting.acquia.com
+  ProxyCommand ssh -F ~/.ssh/ah_config bastion-3 nc %h %p
+  HostName %h
+  User kylebrowning
+  Port 40506
+  ServerAliveInterval 60
+  ForwardAgent yes
+  StrictHostKeyChecking no
+  IdentityFile ~/.ssh/id_rsa
+
+Host *.hosting.acquia.com
+  ProxyCommand ssh -F ~/.ssh/ah_config bastion nc %h %p
+  HostName %h
+  User kylebrowning
+  Port 40506
+  ServerAliveInterval 60
+  ForwardAgent yes
+  StrictHostKeyChecking no
+  IdentityFile ~/.ssh/id_rsa
+
+Host dbmaster-*.network ded-*.network web-*.network staging-*.network fs-*.network fsdb-*.network custom-*.network managed-*.network bal-*.network bal-*.devcloud
+  ProxyCommand ssh -F ~/.ssh/ah_config bastion nc %h %p
+  HostName %h.hosting.acquia.com
+  User kylebrowning
+  Port 40506
+  ServerAliveInterval 60
+  ForwardAgent yes
+  StrictHostKeyChecking no
+  IdentityFile ~/.ssh/id_rsa
+
+Host dbmaster-* ded-* web-* staging-* fs-* fsdb-* fsdbmesh-* custom-* managed-* bal-*
+  ProxyCommand ssh -F ~/.ssh/ah_config bastion nc %h %p
+  HostName %h.prod.hosting.acquia.com
+  User kylebrowning
+  Port 40506
+  ServerAliveInterval 60
+  ForwardAgent yes
+  StrictHostKeyChecking no
+  IdentityFile ~/.ssh/id_rsa
+
+Host srv-* free-*
+  ProxyCommand ssh -F ~/.ssh/ah_config bastion nc %h %p
+  HostName %h.devcloud.hosting.acquia.com
+  User kylebrowning
+  Port 40506
+  ServerAliveInterval 60
+  ForwardAgent yes
+  StrictHostKeyChecking no
+  IdentityFile ~/.ssh/id_rsa
+
+Host managed-*
+  ProxyCommand ssh -F ~/.ssh/ah_config bastion nc %h %p
+  HostName %h.gardens.hosting.acquia.com
+  User kylebrowning
+  Port 40506
+  ServerAliveInterval 60
+  ForwardAgent yes
+  StrictHostKeyChecking no
+  IdentityFile ~/.ssh/id_rsa
+
+Host *.e2a.us
+  ProxyCommand ssh -F ~/.ssh/ah_config bastion nc %h %p
+  HostName %h
+  User kylebrowning
+  Port 40506
+  ServerAliveInterval 60
+  ForwardAgent yes
+  StrictHostKeyChecking no
+  IdentityFile ~/.ssh/id_rsa
+
+Host java*.search-service.hosting.acquia.com nx*.search-service.hosting.acquia.com
+  ProxyCommand ssh -F ~/.ssh/ah_config bastion nc %h %p
+  HostName %h
+  User kylebrowning
+  Port 40506
+  ServerAliveInterval 60
+  ForwardAgent yes
+  StrictHostKeyChecking no
+  IdentityFile ~/.ssh/id_rsa

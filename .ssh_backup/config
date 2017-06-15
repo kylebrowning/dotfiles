@@ -1,0 +1,21 @@
+Host hack3r.com
+ ForwardAgent yes
+ user root
+
+Host lux
+  HostName lux.roothack.org
+  port 1338
+  user ocyrus
+
+
+host 54.69.232.5
+ user ubuntu
+IdentityFile ~/.ssh/awskey
+
+host tienlen.cards
+ ForwardAgent yes
+ user root
+
+host prod.kylebrowning.com
+ ForwardAgent yes
+ user root

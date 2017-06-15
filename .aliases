@@ -65,7 +65,7 @@ alias ips="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[
 alias ifactive="ifconfig | pcregrep -M -o '^[^\t:]+:([^\n]|\n\t)*status: active'"
 
 # Flush Directory Service cache
-alias flush="dscacheutil -flushcache && killall -HUP mDNSResponder"
+alias flush="sudo dscacheutil -flushcache && sudo killall -HUP mDNSResponder && sudo killall -9 dnsmasq; echo "flushed
 
 # Clean up LaunchServices to remove duplicates in the “Open With” menu
 alias lscleanup="/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user && killall Finder"
@@ -159,8 +159,11 @@ alias reload="exec $SHELL -l"
 # Print each PATH entry on a separate line
 alias path='echo -e ${PATH//:/\\n}'
 
-# open folder with Atom
-alias a='open . -a Atom'
 
 # open folder with Tower
 alias t='open . -a Tower'
+
+# Aliass for hub to create pull-request.
+alias gpr='hub pull-request -m "$(git log -1 --pretty=%B)" -o'
+
+alias clean="kill $(osascript -e 'tell app "System Events" to unix id of processes where background only is false'|tr -d ,)"

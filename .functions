@@ -201,9 +201,9 @@ function s() {
 # opens the given location
 function a() {
 	if [ $# -eq 0 ]; then
-		atom .;
+		atom . --enable-gpu-rasterization;
 	else
-		atom "$@";
+		atom "$@" --enable-gpu-rasterization;
 	fi;
 }
 
