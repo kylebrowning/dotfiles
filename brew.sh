@@ -105,15 +105,16 @@ brew install zopfli
 
 
 # development
-# brew cask install virtualbox
-# brew cask install vagrant
-# brew cask install vagrant-manager
-# brew install ansible
+brew cask install virtualbox
+brew cask install vagrant
+brew cask install vagrant-manager
+brew install ansible
 brew install composer
 brew install cocoapods
 brew install carthage
 brew install vapor/tap/vapor
-
+brew cask install docker
+brew install npm
 
 # Remove outdated versions from the cellar.
 brew cleanup
