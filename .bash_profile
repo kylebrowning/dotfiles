@@ -64,3 +64,5 @@ function blt() {
     exit 1
   fi
 }
+
+eval "$(hub alias -s)"
