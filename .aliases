@@ -12,7 +12,7 @@ alias -- -="cd -"
 alias d="cd ~/Documents/Dropbox"
 alias dl="cd ~/Downloads"
 alias dt="cd ~/Desktop"
-alias p="cd ~/projects"
+alias w="cd ~/work"
 alias g="git"
 alias h="history"
 alias j="jobs"
@@ -141,6 +141,7 @@ alias badge="tput bel"
 # find . -name .gitattributes | map dirname
 alias map="xargs -n1"
 
+
 # One of @janmoesen’s ProTip™s
 for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
 	alias "$method"="lwp-request -m '$method'"
@@ -174,3 +175,5 @@ alias t='open . -a Tower'
 alias gpr='hub pull-request -m "$(git log -1 --pretty=%B)" -o'
 
 alias clean="kill $(osascript -e 'tell app "System Events" to unix id of processes where background only is false'|tr -d ,)"
+
+alias ht="osascript -e 'tell application \"Finder\"' -e 'set visible of process \"Twitch\" to false' -e 'end tell'"

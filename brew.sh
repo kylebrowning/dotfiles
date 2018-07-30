@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 # Install command-line tools using Homebrew.
 
 # Make sure we’re using the latest Homebrew.
@@ -105,16 +106,23 @@ brew install zopfli
 
 
 # development
-brew cask install virtualbox
-brew cask install vagrant
-brew cask install vagrant-manager
-brew install ansible
-brew install composer
+# brew cask install virtualbox
+# brew cask install vagrant
+# brew cask install vagrant-manager
+# brew install ansible
+# brew install composer
 brew install cocoapods
 brew install carthage
 brew install vapor/tap/vapor
 brew cask install docker
 brew install npm
+
+brew install swiftlint
+brew install fastlane
+brew install gnupg2
+brew install bower
+brew install hub
+brew install heroku/brew/heroku
 
 # Remove outdated versions from the cellar.
 brew cleanup
